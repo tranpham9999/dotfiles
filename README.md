@@ -67,11 +67,18 @@ OP_API_KEY=xxxxxxxx
 MCP **openproject** sẽ không start nếu thiếu 2 biến này. **ms365** cần login
 OAuth một lần: chạy `/ms365 login` trong opencode.
 
+**GitHub MCP** đọc token từ file `~/.config/opencode/github-pat` (1 dòng,
+raw token, không quote). Cách lấy: tạo PAT tại
+`github.com/settings/tokens` (scopes `repo` + `read:org`) hoặc dùng
+`gh auth login` rồi `gh auth token > ~/.config/opencode/github-pat`.
+Nếu file chứa `replace-me` thì MCP github sẽ báo 401.
+
 ## MCP servers được cấu hình
 
 | Server | Nền tảng | Ghi chú |
 |---|---|---|
 | `mslearn` | mọi nơi | remote, tài liệu Microsoft |
+| `github` | mọi nơi | remote, cần `github-pat` (xem Secrets) |
 | `drawio`, `drawio-edit` | mọi nơi | npx / uvx |
 | `playwright` | mọi nơi | trình duyệt Chrome |
 | `ms365` | mọi nơi | org-mode, read-only |

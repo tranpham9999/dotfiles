@@ -116,6 +116,19 @@ else
   ok ".env already exists (left untouched)"
 fi
 
+# GitHub MCP token (raw PAT or gh OAuth token, one line, no quotes)
+if [[ ! -f "$OC_DIR/github-pat" ]]; then
+  if command -v gh >/dev/null 2>&1 && gh auth token >/dev/null 2>&1; then
+    gh auth token > "$OC_DIR/github-pat" && chmod 600 "$OC_DIR/github-pat"
+    ok "github-pat created from gh auth token"
+  else
+    printf 'replace-me-github-pat\n' > "$OC_DIR/github-pat" && chmod 600 "$OC_DIR/github-pat"
+    warn "created $OC_DIR/github-pat with placeholder — put a GitHub PAT there (repo + read:org scopes) or run 'gh auth login' first"
+  fi
+else
+  ok "github-pat already exists (left untouched)"
+fi
+
 info "npm install (plugin deps) in $OC_DIR"
 (cd "$OC_DIR" && npm install --silent --no-fund --no-audit)
 ok "node_modules ready"

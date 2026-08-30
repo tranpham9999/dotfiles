@@ -58,6 +58,14 @@
       "type": "remote",
       "enabled": true,
       "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "github": {
+      "type": "remote",
+      "enabled": true,
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer {file:~/.config/opencode/github-pat}"
+      }
     }
   }
 }
