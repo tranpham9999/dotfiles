@@ -1,0 +1,63 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "opencode-go": {
+      "options": {
+        "timeout": false,
+        "headerTimeout": false
+      }
+    }
+  },
+  "mcp": {
+    "drawio": {
+      "type": "local",
+      "enabled": true,
+      "command": ["npx", "-y", "@drawio/mcp"]
+    },
+    "drawio-edit": {
+      "type": "local",
+      "enabled": true,
+      "command": ["uvx", "drawio-mcp"]
+    },
+    "playwright": {
+      "type": "local",
+      "enabled": true,
+      "command": ["npx", "-y", "@playwright/mcp", "--browser", "chrome"]
+    },
+    "ms365": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@softeria/ms-365-mcp-server",
+        "--org-mode",
+        "--read-only",
+        "--enabled-tools",
+        "sharepoint|site|drive"
+      ]
+    },
+    "openproject": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "/bin/bash",
+        "-c",
+        "source \"$HOME/.config/opencode/.env\" && export OPENPROJECT_BASE_URL=\"${OP_BASE_URL:?Set OP_BASE_URL in ~/.config/opencode/.env}\" OPENPROJECT_API_TOKEN=\"$OP_API_KEY\" && exec uvx openproject-ce-mcp"
+      ],
+      "environment": {
+        "OPENPROJECT_READ_PROJECTS": "*"
+      }
+    },
+    "macos-mcp": {
+      "type": "local",
+      "enabled": true,
+      "command": ["uvx", "macos-mcp", "serve"]
+    },
+    "mslearn": {
+      "type": "remote",
+      "enabled": true,
+      "url": "https://learn.microsoft.com/api/mcp"
+    }
+  }
+}
