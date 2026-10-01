@@ -11,14 +11,10 @@
   "mcp": {
     "drawio": {
       "type": "local",
-      "enabled": true,
+      "enabled": false,
       "command": ["npx", "-y", "@drawio/mcp"]
     },
-    "drawio-edit": {
-      "type": "local",
-      "enabled": true,
-      "command": ["uvx", "drawio-mcp"]
-    },
+
     "playwright": {
       "type": "local",
       "enabled": true,
@@ -26,7 +22,7 @@
     },
     "ms365": {
       "type": "local",
-      "enabled": true,
+      "enabled": false,
       "command": [
         "npx",
         "-y",
@@ -52,7 +48,7 @@
     "macos-mcp": {
       "type": "local",
       "enabled": true,
-      "command": ["uvx", "macos-mcp", "serve"]
+      "command": ["uvx", "macos-mcp", "serve", "--transport", "stdio"]
     },
     "mslearn": {
       "type": "remote",
@@ -66,6 +62,11 @@
       "headers": {
         "Authorization": "Bearer {file:~/.config/opencode/github-pat}"
       }
+    },
+    "markitdown": {
+      "type": "local",
+      "enabled": true,
+      "command": ["uvx", "markitdown-mcp"]
     }
   }
 }
